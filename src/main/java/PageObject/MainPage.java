@@ -5,32 +5,33 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class MainPage implements BasePage {
-    private WebDriver driver;
+    private final WebDriver driver;
     //заголовок секции "Собери бургер"
-    private By burgerIngredientsHeader = By.xpath(".//h1[text()= 'Соберите бургер']");
+    private final By burgerIngredientsHeader = By.xpath(".//h1[text()= 'Соберите бургер']");
     //вкладка "Булки"
-    private By bunsButton = By.xpath(".//span[text()= 'Булки']/parent::div");
+    private final By bunsButton = By.xpath(".//span[text()= 'Булки']/parent::div");
     //вкладка "Соусы"
-    private By souseButton = By.xpath(".//span[text()= 'Соусы']/parent::div");
+    private final By souseButton = By.xpath(".//span[text()= 'Соусы']/parent::div");
     //вкладка "Начинки"
-    private By toppingButton = By.xpath(".//span[text()= 'Начинки']/parent::div");
+    private final By toppingButton = By.xpath(".//span[text()= 'Начинки']/parent::div");
     //заголовок раздела "Булки"
-    private By bunsTitle = By.xpath(".//h2[text()= 'Булки']");
+    private final By bunsTitle = By.xpath(".//h2[text()= 'Булки']");
     //заголовок раздела "Соусы"
-    private By souseTitle = By.xpath(".//h2[text()= 'Соусы']");
+    private final By souseTitle = By.xpath(".//h2[text()= 'Соусы']");
     //заголовок раздела "Начинки"
-    private By toppingTitle = By.xpath(".//h2[text()= 'Начинки']");
+    private final By toppingTitle = By.xpath(".//h2[text()= 'Начинки']");
     //ссылка на ингредиенты
-    private By ingredientItem = By.xpath(".//ul['BurgerIngredients_ingredients__list__2A-mT']/a");
+    private final By ingredientItem = By.xpath(".//ul['BurgerIngredients_ingredients__list__2A-mT']/a");
     //кнопка Войти в аккаунт
-    private By loginButton = By.xpath(".//button[text()= 'Войти в аккаунт']");
+    private final By loginButton = By.xpath(".//button[text()= 'Войти в аккаунт']");
     //кнопка Оформить заказ
-    private By orderButton = By.xpath(".//button[text()= 'Оформить заказ']");
+    private final By orderButton = By.xpath(".//button[text()= 'Оформить заказ']");
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
@@ -60,7 +61,8 @@ public class MainPage implements BasePage {
                 sectionButton = toppingButton;
                 sectionTitle = toppingTitle;
                 break;
-            default: throw new RuntimeException(String.format("Раздел с названием %s не найден", sectionName));
+            default:
+                throw new RuntimeException(String.format("Раздел с названием %s не найден", sectionName));
         }
         return List.of(sectionButton, sectionTitle);
     }

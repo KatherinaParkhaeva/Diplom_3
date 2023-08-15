@@ -18,9 +18,11 @@ public class LoginEntryPoint {
                 return new RegisterPage(driver);
             case "ForgotPassword":
                 return new ForgotPasswordPage(driver);
-            default: throw new RuntimeException(String.format("Точка входа с названием %s не найдена", entryPoint));
+            default:
+                throw new RuntimeException(String.format("Точка входа с названием %s не найдена", entryPoint));
         }
     }
+
     @Step("получение URL в зависимости от entryPoint")
     public static String getEntryPointURL(String entryPoint) {
         switch (entryPoint) {
@@ -31,7 +33,8 @@ public class LoginEntryPoint {
                 return REGISTER_PAGE_URL;
             case "ForgotPassword":
                 return FORGOT_PASSWORD_PAGE_URL;
-            default: throw new RuntimeException(String.format("Точка входа с названием %s не найдена", entryPoint));
+            default:
+                throw new RuntimeException(String.format("Точка входа с названием %s не найдена", entryPoint));
         }
     }
 }

@@ -21,9 +21,8 @@ import static config.WebDriverCreator.createWebDriver;
 public class AccountTest {
     private WebDriver driver;
     private User user;
-    private UserClient userClient = new UserClient();
-    private UserCreds userCreds;
-    private RandomUserGenerator userGenerator = new RandomUserGenerator();
+    private final UserClient userClient = new UserClient();
+    private final RandomUserGenerator userGenerator = new RandomUserGenerator();
 
     @Before
     public void setUp() {
@@ -59,7 +58,7 @@ public class AccountTest {
     @After
     public void teardown() {
         driver.quit();
-        ValidatableResponse loginResponse = userClient.loginUser(userCreds.credsFrom(user));
+        ValidatableResponse loginResponse = userClient.loginUser(UserCreds.credsFrom(user));
         if (loginResponse.extract().statusCode() == 200) {
             String accessTokenBearer = loginResponse.extract().path("accessToken");
             String accessToken = accessTokenBearer.split(" ")[1];

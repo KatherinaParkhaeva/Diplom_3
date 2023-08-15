@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
 import java.util.List;
 
 import static config.Constants.MAIN_PAGE_URL;
@@ -18,8 +19,8 @@ import static config.WebDriverCreator.createWebDriver;
 public class ConstructorTest {
     private WebDriver driver;
     private MainPage objMainPage;
-    private String expectedSectionName;
-    private boolean isSectionDisplayed;
+    private final String expectedSectionName;
+    private final boolean isSectionDisplayed;
 
     public ConstructorTest(String expectedSectionName, boolean isSectionDisplayed) {
         this.expectedSectionName = expectedSectionName;
@@ -48,9 +49,16 @@ public class ConstructorTest {
     public void goToIngredientTypeSectionTest() {
         List<By> section = objMainPage.getSectionSelectors(expectedSectionName);
         objMainPage.clickSectionButton(section);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        Assert.assertTrue(driver.findElement(section.get(0)).getAttribute("class").contains("current"));
         Assert.assertTrue(String.format("Раздел %s отображается: %b", expectedSectionName, isSectionDisplayed),
                 objMainPage.isSectionTitleDisplayed(section));
     }
+
 
     @After
     public void teardown() {

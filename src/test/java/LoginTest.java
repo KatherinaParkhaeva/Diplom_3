@@ -1,7 +1,6 @@
 import PageObject.BasePage;
 import PageObject.LoginPage;
 import PageObject.MainPage;
-import utils.LoginEntryPoint;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
@@ -12,10 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
-import utils.RandomUserGenerator;
-import utils.User;
-import utils.UserClient;
-import utils.UserCreds;
+import utils.*;
 
 import static config.WebDriverCreator.createWebDriver;
 
@@ -23,18 +19,18 @@ import static config.WebDriverCreator.createWebDriver;
 public class LoginTest {
     private WebDriver driver;
     private User user;
-    private UserClient userClient = new UserClient();
+    private final UserClient userClient = new UserClient();
     private UserCreds userCreds;
-    private RandomUserGenerator userGenerator = new RandomUserGenerator();
+    private final RandomUserGenerator userGenerator = new RandomUserGenerator();
     private String accessToken;
-    private String entryPoint;
+    private final String entryPoint;
 
     public LoginTest(String entryPoint) {
         this.entryPoint = entryPoint;
     }
 
     @Parameterized.Parameters(name = "Точка входа: кнопка на странице {0}")
-    public static  Object[][] getEntryPoint() {
+    public static Object[][] getEntryPoint() {
         return new Object[][]{
                 {"Main"}, //1. вход по кнопке «Войти в аккаунт» на главной,
                 {"Header"}, //2. вход через кнопку «Личный кабинет»,
@@ -72,7 +68,7 @@ public class LoginTest {
     @After
     public void teardown() {
         driver.quit();
-        ValidatableResponse loginResponse = userClient.loginUser(userCreds.credsFrom(user));
+        ValidatableResponse loginResponse = userClient.loginUser(UserCreds.credsFrom(user));
         if (loginResponse.extract().statusCode() == 200) {
             String accessTokenBearer = loginResponse.extract().path("accessToken");
             String accessToken = accessTokenBearer.split(" ")[1];

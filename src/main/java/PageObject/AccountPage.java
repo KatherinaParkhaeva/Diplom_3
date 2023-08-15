@@ -9,11 +9,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class AccountPage {
-    private WebDriver driver;
+    private final WebDriver driver;
     //кнопка "Выход"
-    private By logoutButton = By.xpath(".//button[text() = 'Выход']");
+    private final By logoutButton = By.xpath(".//button[text() = 'Выход']");
     //текст "В этом разделе вы можете изменить свои персональные данные"
-    private By accountText = By.xpath(".//p[text() = 'В этом разделе вы можете изменить свои персональные данные']");
+    private final By accountText = By.xpath(".//p[text() = 'В этом разделе вы можете изменить свои персональные данные']");
 
     public AccountPage(WebDriver driver) {
         this.driver = driver;

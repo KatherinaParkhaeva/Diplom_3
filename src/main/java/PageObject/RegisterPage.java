@@ -1,8 +1,8 @@
 package PageObject;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.User;
@@ -10,21 +10,21 @@ import utils.User;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class RegisterPage implements BasePage {
-    private WebDriver driver;
+    private final WebDriver driver;
     //заголовок формы регистрации
-    private By registerTitle = By.xpath(".//h2[text()= 'Регистрация']");
+    private final By registerTitle = By.xpath(".//h2[text()= 'Регистрация']");
     //поле Имя
-    private By nameInput = By.xpath(".//label[text()= 'Имя']/parent::div/input");
+    private final By nameInput = By.xpath(".//label[text()= 'Имя']/parent::div/input");
     //поле Email
-    private By emailInput = By.xpath(".//label[text()= 'Email']/parent::div/input");
+    private final By emailInput = By.xpath(".//label[text()= 'Email']/parent::div/input");
     //поле Пароль
-    private By passwordInput = By.xpath(".//label[text()= 'Пароль']/parent::div/input");
+    private final By passwordInput = By.xpath(".//label[text()= 'Пароль']/parent::div/input");
     //ошибка ввода Пароля "Некорректный пароль"
-    private By passwordErrorText = By.xpath(".//p[text()= 'Некорректный пароль']");
+    private final By passwordErrorText = By.xpath(".//p[text()= 'Некорректный пароль']");
     //кнопка "Зарегистрироваться"
-    private By registerButton = By.xpath(".//button[text()= 'Зарегистрироваться']");
+    private final By registerButton = By.xpath(".//button[text()= 'Зарегистрироваться']");
     //ссылка "Войти"
-    private By loginLink = By.linkText("Войти");
+    private final By loginLink = By.linkText("Войти");
 
     public RegisterPage(WebDriver driver) {
         this.driver = driver;
@@ -64,7 +64,7 @@ public class RegisterPage implements BasePage {
         setPasswordInput(user.getPassword());
         try {
             clickRegisterButton();
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Некорректно заполнены поля формы");
             throw e;
         }

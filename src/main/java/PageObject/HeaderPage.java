@@ -8,13 +8,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class HeaderPage implements BasePage {
-    private WebDriver driver;
+    private final WebDriver driver;
     //ссылка "Конструктор"
-    private By constructorLink = By.linkText("Конструктор");
+    private final By constructorLink = By.linkText("Конструктор");
     //ссылка Лого
-    private By logoLink = By.xpath(".//div[@class = 'AppHeader_header__logo__2D0X2']/a");
+    private final By logoLink = By.xpath(".//div[@class = 'AppHeader_header__logo__2D0X2']/a");
     //ссылка "Личный кабинет"
-    private By accountLink = By.linkText("Личный Кабинет");
+    private final By accountLink = By.linkText("Личный Кабинет");
 
     public HeaderPage(WebDriver driver) {
         this.driver = driver;

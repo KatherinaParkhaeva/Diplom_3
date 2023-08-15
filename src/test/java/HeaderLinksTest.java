@@ -1,16 +1,16 @@
 import PageObject.HeaderPage;
 import PageObject.MainPage;
-import org.openqa.selenium.WebDriver;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.WebDriver;
 
 import static config.Constants.LOGIN_PAGE_URL;
 import static config.Constants.MAIN_PAGE_URL;
-import static config.WebDriverCreator.*;
+import static config.WebDriverCreator.createWebDriver;
 
 public class HeaderLinksTest {
     private WebDriver driver;

@@ -8,9 +8,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class ForgotPasswordPage implements BasePage {
-    private WebDriver driver;
+    private final WebDriver driver;
     //ссылка Войти
-    private By loginLink = By.linkText("Войти");
+    private final By loginLink = By.linkText("Войти");
 
     public ForgotPasswordPage(WebDriver driver) {
         this.driver = driver;

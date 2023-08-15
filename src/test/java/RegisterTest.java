@@ -21,9 +21,8 @@ public class RegisterTest {
     private WebDriver driver;
     private RegisterPage objRegPage;
     private User user;
-    private UserClient userClient = new UserClient();
-    private UserCreds userCreds;
-    private RandomUserGenerator userGenerator = new RandomUserGenerator();
+    private final UserClient userClient = new UserClient();
+    private final RandomUserGenerator userGenerator = new RandomUserGenerator();
 
     @Before
     public void setUp() {
@@ -57,7 +56,7 @@ public class RegisterTest {
     @Description("проверка регистрации с некорректным паролем")
     public void registrationWithIncorrectPasswordTest() {
         String expectedText = "Некорректный пароль";
-        String incorrectPassword = user.getPassword().substring(0,5);
+        String incorrectPassword = user.getPassword().substring(0, 5);
         user = user.setPassword(incorrectPassword);
         objRegPage.setRegistrationForm(user);
         String actualText = objRegPage.getPasswordErrorText();
@@ -69,7 +68,7 @@ public class RegisterTest {
     @After
     public void teardown() {
         driver.quit();
-        ValidatableResponse loginResponse = userClient.loginUser(userCreds.credsFrom(user));
+        ValidatableResponse loginResponse = userClient.loginUser(UserCreds.credsFrom(user));
         if (loginResponse.extract().statusCode() == 200) {
             String accessTokenBearer = loginResponse.extract().path("accessToken");
             String accessToken = accessTokenBearer.split(" ")[1];

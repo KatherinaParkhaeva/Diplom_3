@@ -10,15 +10,15 @@ import utils.UserCreds;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class LoginPage {
-    private WebDriver driver;
+    private final WebDriver driver;
     //заголовок "Вход"
-    private By loginTitle = By.xpath(".//h2[text()= 'Вход']");
+    private final By loginTitle = By.xpath(".//h2[text()= 'Вход']");
     //поле Email
-    private By emailInput = By.xpath(".//label[text()= 'Email']/parent::div/input");
+    private final By emailInput = By.xpath(".//label[text()= 'Email']/parent::div/input");
     //поле Пароль
-    private By passwordInput = By.xpath(".//label[text()= 'Пароль']/parent::div/input");
+    private final By passwordInput = By.xpath(".//label[text()= 'Пароль']/parent::div/input");
     //кнопка "Войти"
-    private By loginButton = By.xpath(".//button[text()= 'Войти']");
+    private final By loginButton = By.xpath(".//button[text()= 'Войти']");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -59,7 +59,7 @@ public class LoginPage {
         setPasswordInput(userCreds.getPassword());
         try {
             clickLoginButton();
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Некорректно заполнены поля формы");
             throw e;
         }
